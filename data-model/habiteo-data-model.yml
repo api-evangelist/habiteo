@@ -1,0 +1,165 @@
+generated: '2026-08-17'
+method: derived
+source: >-
+  openapi/habiteo-*-openapi.yml plus the live type and taxonomy registries at
+  https://www.habiteo.com/wp-json/wp/v2/types and /wp/v2/taxonomies, and the _links hypermedia on a
+  sample post, all read anonymously on 2026-08-17.
+scope: >-
+  The entity graph of the WordPress content API behind www.habiteo.com. This is CMS content, not
+  Habiteo's domain model: no programme, lot, 3D asset, buyer or reservation entity is exposed
+  publicly anywhere. Habiteo's real domain objects live inside myHabiteo behind a login.
+id_convention:
+  style: integer
+  detail: >-
+    Every entity is keyed by a bare auto-increment integer `id`, with a human `slug` and an absolute
+    `link` URL. There are no prefixed or typed identifiers, so an id alone does not tell a caller
+    which collection it belongs to.
+entities:
+- name: Post
+  rest_base: posts
+  label: Articles
+  description: The habiteo.com news and blog articles, in French, Spanish and English. 384 published at time of derivation.
+  key_fields: [id, slug, date, date_gmt, modified, modified_gmt, status, type, link, title, content, excerpt, author, featured_media, categories, tags, comment_status, sticky, format, template, meta, guid]
+- name: Page
+  rest_base: pages
+  label: Pages
+  description: Marketing and product pages — the localized product pages for Modelisation, myHabiteo, Configurateur and Habiteo Truck.
+  key_fields: [id, slug, date, modified, status, type, link, title, content, excerpt, author, featured_media, parent, menu_order, template]
+- name: Media
+  rest_base: media
+  label: Fichier média
+  description: The media library — logos, 3D renders, client screenshots and the commercial PDFs referenced from the site.
+  key_fields: [id, slug, date, link, title, media_type, mime_type, source_url, media_details, alt_text, caption, post]
+- name: Portfolio
+  rest_base: portfolio
+  label: Portfolio
+  description: The `portfolio` custom post type used for Habiteo client and project showcases.
+  key_fields: [id, slug, date, status, link, title, content, excerpt, author, featured_media, portfolio_category]
+- name: ContentBlock
+  rest_base: uncodeblock
+  label: Content Block
+  description: Reusable page blocks from the Uncode theme. Presentation fragments, not business content.
+  key_fields: [id, slug, status, title, content]
+- name: Category
+  rest_base: categories
+  label: Catégories
+  hierarchical: true
+  description: Post categories. Nine exist, including localized editorial buckets (actu, actu-es).
+  key_fields: [id, slug, name, description, parent, count, taxonomy, link]
+- name: Tag
+  rest_base: tags
+  label: Étiquettes
+  hierarchical: false
+  description: Free-form post tags.
+  key_fields: [id, slug, name, description, count, taxonomy, link]
+- name: PortfolioCategory
+  rest_base: portfolio_category
+  label: Portfolio Categories
+  hierarchical: true
+  description: Categories for the portfolio post type.
+  key_fields: [id, slug, name, description, parent, count, taxonomy, link]
+- name: User
+  rest_base: users
+  label: Utilisateurs
+  description: >-
+    Post authors — Habiteo marketing staff. Anonymously readable. Only the public subset is returned
+    (id, name, slug, link, description, avatar). API Evangelist does not mirror the returned names
+    into this profile.
+  key_fields: [id, name, slug, link, description, url, avatar_urls, meta]
+- name: Comment
+  rest_base: comments
+  label: Commentaires
+  description: Site comments, anonymously readable.
+  key_fields: [id, post, parent, author, author_name, date, content, link, status, type]
+- name: Taxonomy
+  rest_base: taxonomies
+  description: The taxonomy registry itself — reflective metadata about which taxonomies apply to which types.
+  key_fields: [name, slug, description, types, hierarchical, rest_base]
+- name: Type
+  rest_base: types
+  description: The post-type registry — reflective metadata describing the five content types above.
+  key_fields: [name, slug, description, taxonomies, rest_base, supports]
+- name: Status
+  rest_base: statuses
+  description: The publication-status registry (publish, future, draft, pending, private).
+  key_fields: [name, slug, public, queryable]
+relationships:
+- from: Post
+  to: User
+  cardinality: belongs_to
+  via: author
+  evidence: post.author integer id + _links.author href to /wp/v2/users/{id}
+- from: Post
+  to: Media
+  cardinality: belongs_to
+  via: featured_media
+  evidence: post.featured_media integer id + _links["wp:featuredmedia"]
+- from: Post
+  to: Category
+  cardinality: has_many
+  via: categories
+  evidence: post.categories integer array + _links["wp:term"] taxonomy=category
+- from: Post
+  to: Tag
+  cardinality: has_many
+  via: tags
+  evidence: post.tags integer array + _links["wp:term"] taxonomy=post_tag
+- from: Post
+  to: Comment
+  cardinality: has_many
+  via: post
+  evidence: _links.replies href to /wp/v2/comments?post={id}
+- from: Post
+  to: Media
+  cardinality: has_many
+  via: post
+  evidence: _links["wp:attachment"] href to /wp/v2/media?parent={id}
+- from: Post
+  to: Revision
+  cardinality: has_many
+  via: parent
+  evidence: _links["version-history"] href to /wp/v2/posts/{id}/revisions
+- from: Page
+  to: Page
+  cardinality: belongs_to
+  via: parent
+  evidence: page.parent integer id — pages are self-nesting
+- from: Page
+  to: User
+  cardinality: belongs_to
+  via: author
+- from: Portfolio
+  to: PortfolioCategory
+  cardinality: has_many
+  via: portfolio_category
+  evidence: /wp/v2/types portfolio.taxonomies = [portfolio_category]
+- from: Media
+  to: Post
+  cardinality: belongs_to
+  via: post
+  evidence: attachment.post names the id it is attached to
+- from: Comment
+  to: Post
+  cardinality: belongs_to
+  via: post
+- from: Comment
+  to: Comment
+  cardinality: belongs_to
+  via: parent
+  evidence: comment threading
+- from: Category
+  to: Category
+  cardinality: belongs_to
+  via: parent
+  evidence: /wp/v2/taxonomies category.hierarchical = true
+- from: PortfolioCategory
+  to: PortfolioCategory
+  cardinality: belongs_to
+  via: parent
+  evidence: /wp/v2/taxonomies portfolio_category.hierarchical = true
+hypermedia:
+  style: HAL-like _links block on every resource
+  relations: [self, collection, about, author, replies, version-history, wp:attachment, wp:featuredmedia, wp:term, curies]
+  detail: >-
+    _links is the authoritative relationship signal — the id fields duplicate it. curies declares the
+    `wp:` prefix against https://api.w.org/{rel}.

@@ -1,0 +1,396 @@
+openapi: 3.2.0
+info:
+  title: Habiteo Site Content API (WordPress REST wp-json) ContactForms API
+  version: wp-json
+  summary: Anonymous read surface of the WordPress REST API that www.habiteo.com serves.
+  description: 'Habiteo publishes www.habiteo.com on WordPress, which exposes the WordPress REST API at https://www.habiteo.com/wp-json/.
+    The wp/v2 namespace is anonymously readable and returns the company''s news posts, marketing pages, portfolio
+    entries, media library, taxonomies and users as JSON.
+
+
+    This document was DERIVED mechanically by API Evangelist from the route-discovery document served at https://www.habiteo.com/wp-json/
+    on 2026-08-17 — every path, method and parameter below is taken verbatim from that descriptor. Habiteo publishes
+    no OpenAPI, no developer portal and no API documentation of its own, and THIS IS NOT A HABITEO PRODUCT API:
+    it is the content API the CMS exposes. Habiteo''s actual products (myHabiteo, the 3D configurator, the MegaWidget)
+    have no published contract. Write operations exist on these routes but require WordPress authentication (Application
+    Passwords over HTTP Basic, or a cookie + nonce).'
+  contact:
+    name: Habiteo
+    url: https://www.habiteo.com/
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-from: https://www.habiteo.com/wp-json/
+  x-derived-on: '2026-08-17'
+  x-provider-published: false
+servers:
+- url: https://www.habiteo.com/wp-json
+  description: Production
+tags:
+- name: ContactForms
+paths:
+  /contact-form-7/v1:
+    get:
+      operationId: getContactform7V1
+      summary: GET /contact-form-7/v1
+      tags:
+      - ContactForms
+      parameters:
+      - name: namespace
+        in: query
+        required: false
+        schema:
+          type: string
+          default: contact-form-7/v1
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          default: view
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /contact-form-7/v1/contact-forms:
+    get:
+      operationId: getContactform7V1Contactforms
+      summary: GET /contact-form-7/v1/contact-forms
+      tags:
+      - ContactForms
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    post:
+      operationId: postContactform7V1Contactforms
+      summary: POST /contact-form-7/v1/contact-forms
+      tags:
+      - ContactForms
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+      security:
+      - basicAuth: []
+      - cookieNonce: []
+  /contact-form-7/v1/contact-forms/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Route parameter `id` declared by the WordPress route index.
+    get:
+      operationId: getContactform7V1ContactformsId
+      summary: GET /contact-form-7/v1/contact-forms/{id}
+      tags:
+      - ContactForms
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    post:
+      operationId: postContactform7V1ContactformsId
+      summary: POST /contact-form-7/v1/contact-forms/{id}
+      tags:
+      - ContactForms
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+      security:
+      - basicAuth: []
+      - cookieNonce: []
+    delete:
+      operationId: deleteContactform7V1ContactformsId
+      summary: DELETE /contact-form-7/v1/contact-forms/{id}
+      tags:
+      - ContactForms
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+      security:
+      - basicAuth: []
+      - cookieNonce: []
+  /contact-form-7/v1/contact-forms/{id}/feedback:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Route parameter `id` declared by the WordPress route index.
+    post:
+      operationId: postContactform7V1ContactformsIdFeedback
+      summary: POST /contact-form-7/v1/contact-forms/{id}/feedback
+      tags:
+      - ContactForms
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+      security:
+      - basicAuth: []
+      - cookieNonce: []
+  /contact-form-7/v1/contact-forms/{id}/refill:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Route parameter `id` declared by the WordPress route index.
+    get:
+      operationId: getContactform7V1ContactformsIdRefill
+      summary: GET /contact-form-7/v1/contact-forms/{id}/refill
+      tags:
+      - ContactForms
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: WordPress Application Passwords over HTTP Basic. Required for every write operation.
+    cookieNonce:
+      type: apiKey
+      in: header
+      name: X-WP-Nonce
+      description: WordPress logged-in cookie plus an X-WP-Nonce header, used by first-party admin clients.
+  schemas:
+    WPError:
+      type: object
+      description: The WordPress REST error envelope. Not RFC 9457 problem+json.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code, e.g. rest_post_invalid_id.
+        message:
+          type: string
+          description: Human-readable message. Localized — this install answers in French.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status repeated in the body.

@@ -1,0 +1,44 @@
+generated: '2026-08-17'
+method: probed
+source: >-
+  Response headers observed on live anonymous calls to
+  https://www.habiteo.com/wp-json/wp/v2/posts?per_page=1 and https://www.habiteo.com/api/ on
+  2026-08-17, plus a search of every Habiteo public page for a documented limit.
+limit_count: 0
+documented: false
+detail: >-
+  Habiteo documents no rate limits anywhere, and no rate-limit signalling was observed on the wire.
+  No RateLimit-Limit / RateLimit-Remaining / RateLimit-Reset (RFC 9724 style), no X-RateLimit-*, and
+  no Retry-After appeared on any observed response. An integrator gets no runtime budget signal and
+  no way to back off other than by reading status codes. This is an honest zero, not an unchecked
+  field.
+observed_response_headers:
+- header: X-WP-Total
+  purpose: pagination
+  detail: Total items in the collection. NOT a rate-limit header.
+- header: X-WP-TotalPages
+  purpose: pagination
+  detail: Total page count. NOT a rate-limit header.
+- header: Link
+  purpose: pagination
+  detail: 'rel="next" / rel="prev" page URLs.'
+- header: Allow
+  purpose: method advertisement
+  detail: 'Observed value GET on the anonymous posts collection.'
+enforced_limits_observed:
+- scope: per-request
+  parameter: per_page
+  limit: 100
+  window: n/a
+  status_on_exceed: 400
+  code: rest_invalid_param
+  detail: >-
+    A page-size ceiling, not a rate limit. GET /wp-json/wp/v2/posts?per_page=999 returns HTTP 400
+    rest_invalid_param with data.params.per_page explaining the 1..100 bound. Recorded because it is
+    the only enforced numeric budget observable on this surface.
+exhaustion_behaviour:
+  status_code: unknown
+  detail: >-
+    Never observed. The pipeline does not generate load to find a throttle. The origin is Apache
+    with no CDN or WAF in front of it (no Cloudflare/Akamai/Fastly headers), so any limit would be
+    origin-side and unadvertised.

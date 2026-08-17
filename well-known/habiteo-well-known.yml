@@ -1,0 +1,108 @@
+generated: '2026-08-17'
+method: probed
+source: >-
+  Live anonymous HTTP probes of /.well-known/* on every Habiteo host this profile knows about,
+  run 2026-08-17 from the API Evangelist enrichment pipeline.
+summary:
+  hosts_probed: 3
+  paths_probed: 6
+  documents_found: 0
+  note: >-
+    Habiteo serves no .well-known document of any kind. No pointer of type WellKnown or SecurityTxt
+    is wired into apis.yml, because every probe below either 404d or answered with an HTML shell.
+    This file records a measured ABSENCE, not a presence.
+soft_200_warning: >-
+  megawidget.habiteo.com is a Vue single-page application whose server answers HTTP 200 with the
+  same 1,294-byte HTML shell for EVERY path, including paths that cannot exist. Its 200s below are
+  therefore soft-200s and are recorded as misses. The same trap applies more broadly on this domain:
+  *.habiteo.com carries a wildcard that serves the www.habiteo.com marketing site, so api.habiteo.com,
+  developer.habiteo.com, app.habiteo.com, widgets.habiteo.com and funnel.habiteo.com all answer 200
+  with the marketing homepage for arbitrary paths and must never be read as an API host.
+hosts:
+- host: www.habiteo.com
+  role: Marketing site (WordPress) and the host of the wp-json content API.
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+    content_type: text/html
+    document: false
+  - path: /.well-known/openid-configuration
+    status: 404
+    content_type: text/html
+    document: false
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    content_type: text/html
+    document: false
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    content_type: text/html
+    document: false
+  - path: /.well-known/api-catalog
+    status: 404
+    content_type: text/html
+    document: false
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    content_type: text/html
+    document: false
+- host: my.habiteo.com
+  role: myHabiteo operator platform (authenticated single-page app; /connexion login screen).
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+    content_type: text/html
+    document: false
+  - path: /.well-known/openid-configuration
+    status: 404
+    content_type: text/html
+    document: false
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    content_type: text/html
+    document: false
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    content_type: text/html
+    document: false
+  - path: /.well-known/api-catalog
+    status: 404
+    content_type: text/html
+    document: false
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    content_type: text/html
+    document: false
+- host: megawidget.habiteo.com
+  role: Hosted MegaWidget / 3D widget delivery app (Vue SPA, meta robots noindex,nofollow).
+  paths:
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/html
+    document: false
+    note: SPA catch-all shell, 1294 bytes — identical to the response for a nonsense path. Miss.
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: text/html
+    document: false
+    note: SPA catch-all shell. Miss.
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: text/html
+    document: false
+    note: SPA catch-all shell. Miss.
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    content_type: text/html
+    document: false
+    note: SPA catch-all shell. Miss.
+  - path: /.well-known/api-catalog
+    status: 200
+    content_type: text/html
+    document: false
+    note: SPA catch-all shell. Miss.
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    content_type: text/html
+    document: false
+    note: SPA catch-all shell. Miss.

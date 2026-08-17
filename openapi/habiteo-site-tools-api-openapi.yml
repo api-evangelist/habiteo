@@ -1,0 +1,394 @@
+openapi: 3.2.0
+info:
+  title: Habiteo Site Content API (WordPress REST wp-json) SiteTools API
+  version: wp-json
+  summary: Anonymous read surface of the WordPress REST API that www.habiteo.com serves.
+  description: 'Habiteo publishes www.habiteo.com on WordPress, which exposes the WordPress REST API at https://www.habiteo.com/wp-json/.
+    The wp/v2 namespace is anonymously readable and returns the company''s news posts, marketing pages, portfolio
+    entries, media library, taxonomies and users as JSON.
+
+
+    This document was DERIVED mechanically by API Evangelist from the route-discovery document served at https://www.habiteo.com/wp-json/
+    on 2026-08-17 — every path, method and parameter below is taken verbatim from that descriptor. Habiteo publishes
+    no OpenAPI, no developer portal and no API documentation of its own, and THIS IS NOT A HABITEO PRODUCT API:
+    it is the content API the CMS exposes. Habiteo''s actual products (myHabiteo, the 3D configurator, the MegaWidget)
+    have no published contract. Write operations exist on these routes but require WordPress authentication (Application
+    Passwords over HTTP Basic, or a cookie + nonce).'
+  contact:
+    name: Habiteo
+    url: https://www.habiteo.com/
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-from: https://www.habiteo.com/wp-json/
+  x-derived-on: '2026-08-17'
+  x-provider-published: false
+servers:
+- url: https://www.habiteo.com/wp-json
+  description: Production
+tags:
+- name: SiteTools
+paths:
+  /pum/v1:
+    get:
+      operationId: getPumV1
+      summary: GET /pum/v1
+      tags:
+      - SiteTools
+      parameters:
+      - name: namespace
+        in: query
+        required: false
+        schema:
+          type: string
+          default: pum/v1
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          default: view
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /pum/v1/analytics:
+    get:
+      operationId: getPumV1Analytics
+      summary: GET /pum/v1/analytics
+      tags:
+      - SiteTools
+      parameters:
+      - name: event
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Event Type
+      - name: pid
+        in: query
+        required: true
+        schema:
+          type: integer
+        description: Popup ID
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /yoast/v1:
+    get:
+      operationId: getYoastV1
+      summary: GET /yoast/v1
+      tags:
+      - SiteTools
+      parameters:
+      - name: namespace
+        in: query
+        required: false
+        schema:
+          type: string
+          default: yoast/v1
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          default: view
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /yoast/v1/configurator:
+    get:
+      operationId: getYoastV1Configurator
+      summary: GET /yoast/v1/configurator
+      tags:
+      - SiteTools
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    post:
+      operationId: postYoastV1Configurator
+      summary: POST /yoast/v1/configurator
+      tags:
+      - SiteTools
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+      security:
+      - basicAuth: []
+      - cookieNonce: []
+  /yoast/v1/reindex_posts:
+    get:
+      operationId: getYoastV1Reindexposts
+      summary: GET /yoast/v1/reindex_posts
+      tags:
+      - SiteTools
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /yoast/v1/ryte:
+    get:
+      operationId: getYoastV1Ryte
+      summary: GET /yoast/v1/ryte
+      tags:
+      - SiteTools
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /yoast/v1/statistics:
+    get:
+      operationId: getYoastV1Statistics
+      summary: GET /yoast/v1/statistics
+      tags:
+      - SiteTools
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: WordPress Application Passwords over HTTP Basic. Required for every write operation.
+    cookieNonce:
+      type: apiKey
+      in: header
+      name: X-WP-Nonce
+      description: WordPress logged-in cookie plus an X-WP-Nonce header, used by first-party admin clients.
+  schemas:
+    WPError:
+      type: object
+      description: The WordPress REST error envelope. Not RFC 9457 problem+json.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code, e.g. rest_post_invalid_id.
+        message:
+          type: string
+          description: Human-readable message. Localized — this install answers in French.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status repeated in the body.

@@ -1,0 +1,94 @@
+generated: '2026-08-17'
+method: probed
+source: >-
+  Live anonymous error responses observed against https://www.habiteo.com/wp-json/ and
+  https://www.habiteo.com/api/ on 2026-08-17, cross-checked against the 4xx responses declared in
+  openapi/habiteo-*-openapi.yml. Habiteo publishes no error reference of its own.
+format: wordpress-rest
+rfc9457: false
+media_type: application/json
+envelope:
+  shape: '{"code": string, "message": string, "data": {"status": integer, "params": object?}}'
+  fields:
+  - name: code
+    detail: Stable machine-readable error slug. This is the field an integrator should branch on.
+  - name: message
+    detail: >-
+      Human-readable text, LOCALIZED to the site language. This install answers in French, so an
+      integration written against English WordPress error text will not match.
+  - name: data.status
+    detail: The HTTP status repeated inside the body.
+  - name: data.params
+    detail: Present on rest_invalid_param — maps each rejected parameter to why it was rejected.
+problem_types:
+- code: rest_invalid_param
+  status: 400
+  title: Invalid parameter
+  observed_at: GET /wp-json/wp/v2/posts?per_page=999
+  observed_message: 'Paramètre(s) non valide(s) : per_page'
+  detail: One or more query parameters failed the route's declared validation.
+  remediation: Read data.params for the per-parameter reason. per_page must be between 1 and 100.
+- code: rest_no_route
+  status: 404
+  title: No route matched
+  observed_at: GET /wp-json/wp/v2/nonexistent
+  observed_message: Aucun itinéraire n'a été trouvé correspondant à l'URL et à la méthode de requête
+  detail: The path and method combination is not registered in the route index.
+  remediation: Re-read the live route index at https://www.habiteo.com/wp-json/ — it is the contract.
+- code: rest_post_invalid_id
+  status: 404
+  title: Invalid post id
+  observed_at: GET /wp-json/wp/v2/posts/999999999
+  observed_message: Identifiant de l'article non valide.
+  detail: No post exists with the supplied id, or it is not readable in the requested context.
+  remediation: Resolve ids from the collection route rather than constructing them.
+- code: rest_user_invalid_id
+  status: 404
+  title: Invalid user id
+  observed_at: GET /wp-json/wp/v2/users/999999
+  observed_message: Identifiant utilisateur non valide.
+  detail: No user exists with the supplied id.
+  remediation: Resolve author ids from the `author` field of a post, or from GET /wp/v2/users.
+- code: rest_forbidden
+  status: 403
+  title: Forbidden
+  observed_at: GET /wp-json/wp/v2/settings
+  observed_message: Désolé, vous n'avez pas l'autorisation de faire cela.
+  detail: The route exists but the anonymous caller has no capability for it.
+  remediation: >-
+    Not remediable by a public integrator. These routes need WordPress credentials that Habiteo
+    does not issue to third parties.
+- code: rest_forbidden_context
+  status: 401
+  title: Forbidden context
+  observed_at: GET /wp-json/wp/v2/posts?context=edit
+  observed_message: Désolé, vous n'avez pas l'autorisation de modifier les entrées dans ce type de contenu.
+  detail: context=edit was requested without authentication.
+  remediation: Use context=view (the default) or context=embed for anonymous reads.
+- code: rest_cannot_create
+  status: 401
+  title: Cannot create
+  observed_at: POST /wp-json/wp/v2/posts
+  observed_message: Désolé, vous n'avez pas l'autorisation de créer des contenus sous cet identifiant.
+  detail: Every write route rejects anonymous callers.
+  remediation: Writes require WordPress Application Passwords over HTTP Basic. Read-only in practice.
+second_surface_errors:
+  base: https://www.habiteo.com/api
+  format: json-api-plugin
+  envelope: '{"status": "error", "error": string}'
+  observed:
+  - status: 404
+    body: '{"status":"error","error":"Unknown method ''docs''."}'
+    observed_at: GET /api/docs
+  - status: 404
+    body: '{"status":"error","error":"Include ''controller'' and ''method'' vars in your request."}'
+    observed_at: GET /api/core/get_nonce/
+  note: >-
+    A completely different error envelope from the wp-json surface on the same host. Any agent
+    integrating with habiteo.com must handle both shapes.
+notes:
+- >-
+  Error message text is French. Branch on `code`, never on `message`.
+- >-
+  WordPress returns 401 for some capability failures (rest_cannot_create, rest_forbidden_context)
+  and 403 for others (rest_forbidden), with no discriminator beyond the code. Observed, not inferred.

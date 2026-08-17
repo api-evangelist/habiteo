@@ -1,0 +1,90 @@
+generated: '2026-08-17'
+method: probed
+source: >-
+  Unauthenticated registry queries run 2026-08-17 against npm, PyPI, RubyGems, Maven Central, NuGet,
+  crates.io, Packagist and the Go module proxy, plus a read of every Habiteo product page for an SDK
+  or client-library link.
+package_count: 0
+official_sdk_count: 0
+detail: >-
+  Habiteo publishes no client library on any public package registry, in any language. There is no
+  SDK, no CLI and no first-party wrapper, which follows from there being no API to wrap: Habiteo
+  ships no developer programme. NO `SDKs` and no `Packages` pointer is wired into apis.yml, because
+  this file records a measured absence rather than a shipped artifact.
+packages: []
+registry_probes:
+- registry: npm
+  query: habiteo
+  endpoint: https://registry.npmjs.org/-/v1/search?text=habiteo
+  results: 0
+  version: null
+  published: null
+  note: Search returned zero objects. The exact name https://registry.npmjs.org/habiteo returns 404.
+- registry: pypi
+  query: habiteo
+  endpoint: https://pypi.org/pypi/habiteo/json
+  results: 0
+  version: null
+  published: null
+  note: HTTP 404 — no project with this name.
+- registry: rubygems
+  query: habiteo
+  endpoint: https://rubygems.org/api/v1/gems/habiteo.json
+  results: 0
+  version: null
+  published: null
+  note: HTTP 404 — no gem with this name.
+- registry: maven-central
+  query: habiteo
+  endpoint: https://search.maven.org/solrsearch/select?q=habiteo
+  results: 0
+  version: null
+  published: null
+  note: numFound 0.
+- registry: nuget
+  query: habiteo
+  endpoint: https://azuresearch-usnc.nuget.org/query?q=habiteo
+  results: 0
+  version: null
+  published: null
+  note: totalHits 0.
+- registry: crates.io
+  query: habiteo
+  endpoint: https://crates.io/api/v1/crates?q=habiteo
+  results: 0
+  version: null
+  published: null
+  note: meta.total 0.
+- registry: packagist
+  query: habiteo
+  endpoint: https://packagist.org/search.json?q=habiteo
+  results: 0
+  version: null
+  published: null
+  note: >-
+    One unrelated result (aide-travaux/habiter-mieux-serenite, a French renovation-subsidy library)
+    matched on the stem "habiter" and is not a Habiteo package.
+- registry: go
+  query: github.com/habiteo/
+  endpoint: https://proxy.golang.org/github.com/habiteo/@v/list
+  results: 0
+  version: null
+  published: null
+  note: HTTP 404 — no module path under a habiteo namespace.
+- registry: github
+  query: github.com/habiteo
+  endpoint: https://github.com/habiteo
+  results: 0
+  version: null
+  published: null
+  note: >-
+    A GitHub account named "habiteo" exists (HTTP 200) but it is a PERSONAL user account with zero
+    public repositories, no bio and no linked website. Ownership by the company could not be
+    established, so no GitHubOrganization pointer is wired. Honest unknown, not a claim.
+cdn_distribution:
+  present: false
+  note: >-
+    Habiteo distributes no script-tag or CDN-hosted client library. The only browser-delivered code
+    on a Habiteo host is the first-party MegaWidget SPA bundle at
+    megawidget.habiteo.com/static/js/app.<hash>.js, which is an application, not a package a
+    customer installs or pins. See components/habiteo-components.yml.

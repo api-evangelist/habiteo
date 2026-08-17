@@ -1,0 +1,39 @@
+generated: '2026-08-17'
+method: searched
+source: >-
+  https://www.habiteo.com/fr/conditions-generales-de-vente/ (read 2026-08-17), plus probes of
+  https://www.habiteo.com/fr/tarifs/ (404) and https://www.habiteo.com/en/pricing/ (404) and a
+  search of the habiteo.com site and press coverage for a published price list.
+plan_count: 0
+pricing_model: quote-only
+currency: EUR
+detail: >-
+  Habiteo publishes no price list, no plan comparison page and no pricing page in any of its three
+  site languages. Commercial terms are set per customer by devis (quotation): the conditions
+  générales de vente state that prices are firm for twelve calendar months from signature of the
+  devis and are thereafter revised against the SYNTEC index (R1 = R0 x S1/S0), billed 50% on
+  invoice receipt and the balance on delivery of the livrables, payable within thirty days.
+  The CGV reference a freemium tier of myHabiteo ("offre freemium") giving a single user and a free
+  mini-site, but attach no price, quota or limit to it. There is no self-serve signup, no API
+  metering and no developer plan — Habiteo sells no API, so there is nothing to price.
+named_offers:
+- name: myHabiteo (offre freemium)
+  price: null
+  currency: null
+  billing_period: null
+  detail: >-
+    Named in the CGV as a freemium access to the myHabiteo platform with one user and a free
+    mini-site. No price, quota or feature limit is published.
+  source: https://www.habiteo.com/fr/conditions-generales-de-vente/
+- name: Services / Prestations (sur devis)
+  price: null
+  currency: EUR
+  billing_period: per-project
+  detail: >-
+    3D modelling, perspectives, configurator and myHabiteo subscriptions are quoted per project.
+    50% deposit on invoice, balance on delivery, thirty-day payment terms, twelve-month price
+    firmness then SYNTEC indexation.
+  source: https://www.habiteo.com/fr/conditions-generales-de-vente/
+api_pricing:
+  published: false
+  detail: No API product exists, so no API pricing, quota, overage or metering is published.

@@ -1,0 +1,62 @@
+generated: '2026-08-17'
+method: derived
+source: >-
+  openapi/habiteo-*-openapi.yml plus live probes of www.habiteo.com and searches of habiteo.com for
+  a status page, changelog, versioning policy or deprecation policy, run 2026-08-17.
+scope: >-
+  The WordPress REST surface on www.habiteo.com. Habiteo publishes no API lifecycle policy of any
+  kind, for this surface or for its own products.
+versioning:
+  scheme: path-namespace
+  detail: >-
+    Namespaces carry the version: wp/v2, contact-form-7/v1, yoast/v1, pum/v1, oembed/1.0. These are
+    WordPress and plugin versions, not a Habiteo API version. Habiteo has never published a version
+    number for an API of its own.
+  current: wp/v2
+  discovery: https://www.habiteo.com/wp-json/
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  detail: >-
+    No deprecation policy, no Sunset or Deprecation response header, and no advance-notice
+    commitment. NO `Deprecation` pointer is wired in apis.yml.
+  deprecated_operations: []
+  deprecated_operations_note: >-
+    No operation in the derived OpenAPI documents is marked deprecated, because the WordPress route
+    index does not flag any.
+status_page:
+  published: false
+  detail: >-
+    No status.habiteo.com, no statuspage.io / Instatus / Better Stack page, and no uptime page
+    linked from any Habiteo property. NO `StatusPage` pointer is wired in apis.yml.
+changelog:
+  published: false
+  detail: >-
+    No API changelog and no release notes. The nearest dated surface is the corporate news feed at
+    https://www.habiteo.com/fr/actualite-habiteo/ (RSS at /feed/), which is marketing content and
+    carries no API change entries. No ChangeLog artifact is emitted.
+sla:
+  published: false
+  detail: >-
+    No public SLA, uptime target or support-response commitment. The conditions générales de vente
+    at https://www.habiteo.com/fr/conditions-generales-de-vente/ are commercial terms for the 3D and
+    myHabiteo services and name no availability figure for an API.
+support:
+  channel: https://www.habiteo.com/fr/contact/
+  detail: A generic contact form. No developer support channel, forum, or issue tracker exists.
+platform_decay_signals:
+- signal: end-of-life runtime
+  detail: >-
+    The origin advertises X-Powered-By PHP/7.0.6. PHP 7.0 left active support in January 2018 and
+    security support in December 2018. Observed on a live response 2026-08-17.
+- signal: dead backend
+  detail: >-
+    https://configurateur.habiteo.com/back/ and /back/material/ — endpoints referenced by name in
+    the live MegaWidget JavaScript bundle — return HTTP 502 Bad Gateway from nginx/1.13.1.
+- signal: ownership change
+  detail: >-
+    Habiteo was acquired by Bien'ici in May 2022. The brand still ships (myHabiteo Studio was covered
+    on solutionspro.bienici.com), but the newest sitemap post partition on habiteo.com is
+    2024-01 and the sitemap-misc partition last changed 2025-03-06.

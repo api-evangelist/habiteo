@@ -1,0 +1,30 @@
+generated: '2026-08-17'
+method: generated
+source: >-
+  Authored by API Evangelist against the OpenAPI documents derived from
+  https://www.habiteo.com/wp-json/ on 2026-08-17. Habiteo publishes no Agent Skills, no AGENTS.md
+  and no agent-facing documentation; a search of every Habiteo host found none.
+provider: habiteo
+skill_count: 2
+scope_note: >-
+  Both skills are grounded in real operationIds taken from the derived OpenAPI documents in
+  openapi/. They cover the WordPress content API on www.habiteo.com — the only surface an agent can
+  actually call. No skill is written for myHabiteo, the Configurateur or the MegaWidget, because
+  those products have no public contract and inventing one would teach an agent to call something
+  that does not exist.
+skills:
+- name: habiteo-read-newsroom
+  file: habiteo-read-newsroom.md
+  api: habiteo:posts-api
+  description: >-
+    List, filter, page through and fetch Habiteo's 384 published articles, and resolve the category
+    and tag ids needed to narrow them by language or topic.
+  operations: [getWpV2Posts, getWpV2PostsId, getWpV2Categories, getWpV2Tags]
+- name: habiteo-map-content-surface
+  file: habiteo-map-content-surface.md
+  api: habiteo:discovery-api
+  description: >-
+    Read the live route index and the type and taxonomy registries to establish what is callable
+    before calling it, pull the product and portfolio pages, and avoid the *.habiteo.com wildcard
+    soft-200 trap.
+  operations: [getRouteIndex, getWpV2Index, getWpV2Types, getWpV2TypesType, getWpV2Taxonomies, getWpV2Pages, getWpV2Portfolio, getWpV2Media]

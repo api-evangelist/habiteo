@@ -1,0 +1,569 @@
+openapi: 3.2.0
+info:
+  title: Habiteo Site Content API (WordPress REST wp-json) Media API
+  version: wp-json
+  summary: Anonymous read surface of the WordPress REST API that www.habiteo.com serves.
+  description: 'Habiteo publishes www.habiteo.com on WordPress, which exposes the WordPress REST API at https://www.habiteo.com/wp-json/.
+    The wp/v2 namespace is anonymously readable and returns the company''s news posts, marketing pages, portfolio
+    entries, media library, taxonomies and users as JSON.
+
+
+    This document was DERIVED mechanically by API Evangelist from the route-discovery document served at https://www.habiteo.com/wp-json/
+    on 2026-08-17 — every path, method and parameter below is taken verbatim from that descriptor. Habiteo publishes
+    no OpenAPI, no developer portal and no API documentation of its own, and THIS IS NOT A HABITEO PRODUCT API:
+    it is the content API the CMS exposes. Habiteo''s actual products (myHabiteo, the 3D configurator, the MegaWidget)
+    have no published contract. Write operations exist on these routes but require WordPress authentication (Application
+    Passwords over HTTP Basic, or a cookie + nonce).'
+  contact:
+    name: Habiteo
+    url: https://www.habiteo.com/
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-from: https://www.habiteo.com/wp-json/
+  x-derived-on: '2026-08-17'
+  x-provider-published: false
+servers:
+- url: https://www.habiteo.com/wp-json
+  description: Production
+tags:
+- name: Media
+paths:
+  /wp/v2/media:
+    get:
+      operationId: getWpV2Media
+      summary: GET /wp/v2/media
+      tags:
+      - Media
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Le contexte dans lequel la requête est faite ; cela détermine les champs renvoyés.
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+        description: Page courante dans la collection.
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+        description: Nombre maximal d’éléments à renvoyer dans le groupe de résultats.
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Limiter les résultats à ceux qui correspondent à une chaîne de caractères.
+      - name: after
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Limiter la réponse aux articles publiés après une date définie et conforme à la norme ISO8601. '
+      - name: author
+        in: query
+        required: false
+        schema:
+          type: array
+          default: []
+          items:
+            type: integer
+        description: Limiter les résultats aux publications assignées à des auteurs spécifiques.
+      - name: author_exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          default: []
+          items:
+            type: integer
+        description: S’assurer que le jeu de résultats exclut les articles assignés à des auteurs spécifiques.
+      - name: before
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Limiter la réponse aux articles publiés avant une date définie et conforme à la norme ISO8601. '
+      - name: exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          default: []
+          items:
+            type: integer
+        description: S’assure que le jeu de résultats exclut des ID spécifiques.
+      - name: include
+        in: query
+        required: false
+        schema:
+          type: array
+          default: []
+          items:
+            type: integer
+        description: Limiter le groupe de résultats aux ID spécifiés.
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Ignorer un nombre spécifique d’éléments au sein du jeu de résultats.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: desc
+        description: Le paramètre order trie les attributs dans l’ordre croissant ou décroissant.
+      - name: orderby
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - date
+          - relevance
+          - id
+          - include
+          - title
+          - slug
+          default: date
+        description: Trier la collection par attribut d’objet.
+      - name: parent
+        in: query
+        required: false
+        schema:
+          type: array
+          default: []
+          items:
+            type: integer
+        description: Limiter le jeu de résultats à ceux qui ont un ID parent particulier.
+      - name: parent_exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          default: []
+          items:
+            type: integer
+        description: Limiter le jeu de résultats à tous les résultats, exceptés ceux dont le parent porte un ID
+          spécifique.
+      - name: slug
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        description: Limiter le jeu de résultats aux articles ayant au moins un identifiant particulier.
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: array
+          default: inherit
+          items:
+            type: string
+            enum:
+            - inherit
+            - private
+            - trash
+        description: Limiter le jeu de résultats aux articles associés à un ou plusieurs états.
+      - name: media_type
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - image
+          - video
+          - text
+          - application
+          - audio
+        description: Limiter le groupe de résultats aux médias attachés d’un type particulier.
+      - name: mime_type
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Limiter le groupe de résultats à un type MIME particulier.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    post:
+      operationId: postWpV2Media
+      summary: POST /wp/v2/media
+      tags:
+      - Media
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: string
+                  description: La date à laquelle l’objet a été publié, dans le fuseau horaire du site.
+                date_gmt:
+                  type: string
+                  description: La date à laquelle l’objet a été publié, au format GMT.
+                slug:
+                  type: string
+                  description: Un identificateur alphanumérique pour l’objet unique de son type.
+                status:
+                  type: string
+                  enum:
+                  - publish
+                  - future
+                  - draft
+                  - pending
+                  - private
+                  description: Un état nommé pour l’objet.
+                title:
+                  type: object
+                  description: Le titre pour l’objet.
+                author:
+                  type: integer
+                  description: L’ID pour l’auteur de l’objet.
+                comment_status:
+                  type: string
+                  enum:
+                  - open
+                  - closed
+                  description: Définit si les commentaires sont ouverts ou non pour cet objet.
+                ping_status:
+                  type: string
+                  enum:
+                  - open
+                  - closed
+                  description: Définit si l’objet peut recevoir un ping ou non.
+                meta:
+                  type: object
+                  description: Champs métas.
+                template:
+                  type: string
+                  enum:
+                  - ''
+                  description: Le fichier de thème à utiliser pour afficher l’objet.
+                alt_text:
+                  type: string
+                  description: Texte alternatif proposé si le fichier ne peut pas être affiché.
+                caption:
+                  type: object
+                  description: La légende du fichier joint.
+                description:
+                  type: object
+                  description: La description du fichier joint.
+                post:
+                  type: integer
+                  description: L’ID pour l’article associé au fichier.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+      security:
+      - basicAuth: []
+      - cookieNonce: []
+  /wp/v2/media/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Route parameter `id` declared by the WordPress route index.
+    get:
+      operationId: getWpV2MediaId
+      summary: GET /wp/v2/media/{id}
+      tags:
+      - Media
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Le contexte dans lequel la requête est faite ; cela détermine les champs renvoyés.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    post:
+      operationId: postWpV2MediaId
+      summary: POST /wp/v2/media/{id}
+      tags:
+      - Media
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: string
+                  description: La date à laquelle l’objet a été publié, dans le fuseau horaire du site.
+                date_gmt:
+                  type: string
+                  description: La date à laquelle l’objet a été publié, au format GMT.
+                slug:
+                  type: string
+                  description: Un identificateur alphanumérique pour l’objet unique de son type.
+                status:
+                  type: string
+                  enum:
+                  - publish
+                  - future
+                  - draft
+                  - pending
+                  - private
+                  description: Un état nommé pour l’objet.
+                title:
+                  type: object
+                  description: Le titre pour l’objet.
+                author:
+                  type: integer
+                  description: L’ID pour l’auteur de l’objet.
+                comment_status:
+                  type: string
+                  enum:
+                  - open
+                  - closed
+                  description: Définit si les commentaires sont ouverts ou non pour cet objet.
+                ping_status:
+                  type: string
+                  enum:
+                  - open
+                  - closed
+                  description: Définit si l’objet peut recevoir un ping ou non.
+                meta:
+                  type: object
+                  description: Champs métas.
+                template:
+                  type: string
+                  enum:
+                  - ''
+                  description: Le fichier de thème à utiliser pour afficher l’objet.
+                alt_text:
+                  type: string
+                  description: Texte alternatif proposé si le fichier ne peut pas être affiché.
+                caption:
+                  type: object
+                  description: La légende du fichier joint.
+                description:
+                  type: object
+                  description: La description du fichier joint.
+                post:
+                  type: integer
+                  description: L’ID pour l’article associé au fichier.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+      security:
+      - basicAuth: []
+      - cookieNonce: []
+    delete:
+      operationId: deleteWpV2MediaId
+      summary: DELETE /wp/v2/media/{id}
+      tags:
+      - Media
+      parameters:
+      - name: force
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: Que ce soit pour éviter la corbeille ou forcer la suppression.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+      security:
+      - basicAuth: []
+      - cookieNonce: []
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: WordPress Application Passwords over HTTP Basic. Required for every write operation.
+    cookieNonce:
+      type: apiKey
+      in: header
+      name: X-WP-Nonce
+      description: WordPress logged-in cookie plus an X-WP-Nonce header, used by first-party admin clients.
+  schemas:
+    WPError:
+      type: object
+      description: The WordPress REST error envelope. Not RFC 9457 problem+json.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code, e.g. rest_post_invalid_id.
+        message:
+          type: string
+          description: Human-readable message. Localized — this install answers in French.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status repeated in the body.

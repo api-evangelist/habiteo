@@ -1,0 +1,119 @@
+generated: '2026-08-17'
+method: derived
+source: >-
+  openapi/habiteo-*-openapi.yml (derived from https://www.habiteo.com/wp-json/) plus live
+  anonymous response-header observation of https://www.habiteo.com/wp-json/wp/v2/posts?per_page=1
+  and https://www.habiteo.com/api/ on 2026-08-17.
+scope: >-
+  These conventions describe the WordPress REST surface on www.habiteo.com. They are WordPress
+  defaults, not conventions Habiteo authored or documents. Habiteo publishes no API style guide,
+  no developer portal and no contract for its own products (myHabiteo, Configurateur, MegaWidget).
+authentication:
+  style: none-for-read
+  detail: >-
+    Every GET on the wp/v2 namespace listed in this profile answers anonymously over HTTPS with no
+    credential. Writes require WordPress authentication — Application Passwords over HTTP Basic, or
+    a logged-in cookie plus an X-WP-Nonce header. No OAuth, no API keys, no OpenID Connect.
+  observed_gate: >-
+    GET /wp-json/wp/v2/settings returns HTTP 403 {"code":"rest_forbidden"} to an anonymous caller.
+  reference: authentication/habiteo-authentication.yml
+idempotency:
+  supported: false
+  detail: >-
+    No Idempotency-Key header, no idempotent-retry semantics and no request de-duplication are
+    advertised or observed. WordPress REST offers none. NO Idempotency pointer is wired in apis.yml.
+pagination:
+  style: page-number
+  parameters:
+  - name: page
+    in: query
+    default: 1
+    detail: 1-based page index.
+  - name: per_page
+    in: query
+    default: 10
+    maximum: 100
+    detail: Page size, capped at 100 by WordPress.
+  - name: offset
+    in: query
+    detail: Alternative absolute offset, accepted on most collection routes.
+  response_signals:
+  - header: X-WP-Total
+    detail: Total number of items in the unpaginated collection. Observed value 384 on wp/v2/posts.
+  - header: X-WP-TotalPages
+    detail: Total page count for the current per_page. Observed value 384 at per_page=1.
+  - header: Link
+    detail: 'RFC 8288 link header carrying rel="next" and rel="prev" page URLs. Observed.'
+  cors_note: >-
+    Access-Control-Expose-Headers is set to "X-WP-Total, X-WP-TotalPages", so a browser client can
+    read the paging counts cross-origin.
+filtering_and_shaping:
+  ordering:
+    parameters: [order, orderby]
+    detail: order accepts asc|desc; orderby accepts date, id, title, slug, relevance and others per route.
+  search:
+    parameter: search
+    detail: Free-text match across the collection.
+  sparse_fields:
+    parameter: _fields
+    detail: WordPress supports a comma-separated _fields whitelist to trim the response. Not declared in the route index, so it is not modelled in the derived OpenAPI.
+  expansion:
+    parameter: _embed
+    detail: WordPress supports _embed to inline linked resources referenced from _links. Not declared in the route index.
+  context:
+    parameter: context
+    values: [view, embed, edit]
+    detail: Selects the field set. edit requires authentication.
+hypermedia:
+  style: hal-like
+  detail: >-
+    Every resource carries a _links object (self, collection, about, author, replies, wp:attachment,
+    curies) pointing at absolute wp-json URLs. This is the only relationship signal in the payloads
+    and is what data-model/habiteo-data-model.yml was derived from.
+metadata:
+  supported: partial
+  detail: Resources expose a `meta` object, empty on this install for anonymously readable routes.
+request_tracing:
+  request_id_header: none
+  detail: No X-Request-Id, correlation-id or trace header is returned. Nothing to quote in a support ticket.
+versioning:
+  style: path-namespace
+  detail: >-
+    Version lives in the namespace segment — /wp-json/wp/v2, /wp-json/contact-form-7/v1,
+    /wp-json/yoast/v1, /wp-json/pum/v1, /wp-json/oembed/1.0. No Accept-header or query versioning.
+  reference: lifecycle/habiteo-lifecycle.yml
+error_envelope:
+  format: wordpress-rest
+  rfc9457: false
+  media_type: application/json
+  shape: '{"code": "<machine_code>", "message": "<human message>", "data": {"status": <http status>}}'
+  detail: >-
+    Not RFC 9457 problem+json. The message is localized — this install answers in French, so an
+    English-speaking integrator gets French error text.
+  reference: errors/habiteo-problem-types.yml
+rate_limiting:
+  advertised: false
+  detail: >-
+    No RateLimit-*, X-RateLimit-* or Retry-After header was returned on any observed response, and
+    no limits are documented anywhere. See rate-limits/habiteo-rate-limits.yml.
+caching:
+  detail: >-
+    No Cache-Control, ETag or Last-Modified header was returned on the observed wp/v2 collection
+    response, so conditional requests are not available. Responses carry x-robots-tag: noindex.
+transport_observations:
+  server: Apache
+  x_powered_by: PHP/7.0.6
+  tls: TLSv1.3
+  hsts: false
+  note: >-
+    The X-Powered-By header advertises PHP 7.0.6, a release that reached end of security support in
+    December 2018. Recorded as observed, not asserted as a vulnerability.
+second_surface:
+  name: WordPress JSON API plugin
+  base: https://www.habiteo.com/api
+  dispatch: /api/<controller>/<method>/ — the only controller advertised is `core`.
+  discovery: 'GET /api/ returns {"status":"ok","json_api_version":"1.1.1","controllers":["core"]}'
+  error_envelope: '{"status":"error","error":"Unknown method ''<name>''."}'
+  status_code_note: >-
+    Errors return HTTP 404 with a JSON body. Success returns {"status":"ok", ...}. A different
+    envelope from the wp-json surface on the same host — two incompatible error shapes, one domain.

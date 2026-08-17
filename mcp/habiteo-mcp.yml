@@ -1,0 +1,81 @@
+generated: '2026-08-17'
+method: derived
+status: candidate
+source: >-
+  Derived from openapi/habiteo-*-openapi.yml. Searched for an official Habiteo MCP server on
+  2026-08-17 — habiteo.com and every subdomain probed, the npm registry, PyPI and GitHub — and
+  found none.
+provider_published: false
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: none
+  verified: searched
+deployment_note: >-
+  Habiteo ships NO MCP server, remote or local. No /mcp endpoint exists on any Habiteo host, no
+  npm or PyPI package publishes one, and no Habiteo page mentions MCP, agents or tool calling.
+  The tools below are a CANDIDATE list API Evangelist derived from the operations of the WordPress
+  content API on www.habiteo.com — they describe what an MCP server over that surface COULD expose,
+  not anything Habiteo runs. NO `MCPServer` pointer is wired into apis.yml for this file, because
+  the pointer would assert an agent surface the provider does not serve.
+search_evidence:
+- url: https://www.habiteo.com/openapi.json
+  status: 404
+  note: Probed while hunting for any machine contract; the marketing site has none.
+- url: https://api.habiteo.com/openapi.json
+  status: 200
+  note: >-
+    SOFT-200. api.habiteo.com is a DNS wildcard onto the www marketing site and returns the same
+    HTML homepage for every path, including /nonexistent-garbage-xyz123. Not a hit.
+- url: https://megawidget.habiteo.com/.well-known/agent-card.json
+  status: 200
+  note: SOFT-200. SPA catch-all shell, identical for every path. Not a hit.
+- url: https://registry.npmjs.org/-/v1/search?text=habiteo
+  status: 200
+  note: Zero results — no @habiteo scope, no habiteo-mcp package.
+candidate_tools:
+- name: habiteo_list_articles
+  description: List Habiteo news and blog articles, filtered by search text, category, tag or date window.
+  rest: [getWpV2Posts]
+  input_schema_source: openapi/habiteo-posts-api-openapi.yml#/paths/~1wp~1v2~1posts/get/parameters
+- name: habiteo_get_article
+  description: Fetch one Habiteo article by id, with rendered title, excerpt and HTML content.
+  rest: [getWpV2PostsId]
+  input_schema_source: openapi/habiteo-posts-api-openapi.yml#/paths/~1wp~1v2~1posts~1{id}/get
+- name: habiteo_list_pages
+  description: List the Habiteo marketing and product pages across French, English and Spanish.
+  rest: [getWpV2Pages]
+  input_schema_source: openapi/habiteo-pages-api-openapi.yml#/paths/~1wp~1v2~1pages/get/parameters
+- name: habiteo_get_page
+  description: Fetch one Habiteo product or marketing page by id.
+  rest: [getWpV2PagesId]
+  input_schema_source: openapi/habiteo-pages-api-openapi.yml#/paths/~1wp~1v2~1pages~1{id}/get
+- name: habiteo_list_portfolio
+  description: List Habiteo client and project showcase entries.
+  rest: [getWpV2Portfolio]
+  input_schema_source: openapi/habiteo-portfolio-api-openapi.yml#/paths/~1wp~1v2~1portfolio/get/parameters
+- name: habiteo_list_categories
+  description: List article categories, including the language-partitioned editorial buckets.
+  rest: [getWpV2Categories]
+  input_schema_source: openapi/habiteo-taxonomy-api-openapi.yml#/paths/~1wp~1v2~1categories/get/parameters
+- name: habiteo_list_tags
+  description: List article tags.
+  rest: [getWpV2Tags]
+  input_schema_source: openapi/habiteo-taxonomy-api-openapi.yml#/paths/~1wp~1v2~1tags/get/parameters
+- name: habiteo_list_media
+  description: List items in the Habiteo media library — renders, screenshots and commercial PDFs.
+  rest: [getWpV2Media]
+  input_schema_source: openapi/habiteo-media-api-openapi.yml#/paths/~1wp~1v2~1media/get/parameters
+- name: habiteo_describe_surface
+  description: Read the live route index and the registered content types and taxonomies.
+  rest: [getRouteIndex, getWpV2Types, getWpV2Taxonomies]
+  input_schema_source: openapi/habiteo-discovery-api-openapi.yml
+excluded_operations:
+  reason: Not modelled as candidate tools.
+  operations:
+  - getWpV2Users, getWpV2UsersId, getWpV2UsersMe — return named Habiteo staff; personal data, deliberately not surfaced as an agent tool.
+  - Every POST and DELETE operation — writes require WordPress credentials Habiteo does not issue to third parties.
+  - getWpV2Settings — HTTP 403 rest_forbidden anonymously.
+  - The yoast/v1 and pum/v1 routes — plugin administration, not content.

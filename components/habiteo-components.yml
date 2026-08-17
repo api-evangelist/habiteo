@@ -1,0 +1,73 @@
+generated: '2026-08-17'
+method: searched
+source: >-
+  https://www.habiteo.com/fr/myhabiteo/, https://www.habiteo.com/en/habiteo-configurator/,
+  https://info.habiteo.com/decouvrir-le-megawidget and live probes of megawidget.habiteo.com and
+  configurateur.habiteo.com run 2026-08-17.
+summary: >-
+  Habiteo's integration surface is client-side, not programmatic. Its products are delivered to a
+  customer's audience as HOSTED SURFACES reached by URL — a mini-site, a virtual-tour view, a
+  configurator — that a developer's own website links to or frames. There is no component library,
+  no npm package, no web-component registry and no documented embed API: no page on any Habiteo
+  property publishes an embed snippet, an iframe contract, a JavaScript loader or a parameter
+  reference. Everything below was established by observing the live surfaces, not from developer
+  documentation, because none exists.
+components:
+- family: MegaWidget
+  name: Habiteo MegaWidget
+  kind: hosted-surface
+  delivery: URL / link, framed or linked from the customer's own programme page
+  host: https://megawidget.habiteo.com/
+  detail: >-
+    A hosted mini-site that gathers every 3D asset for one real-estate programme behind a single
+    link — drone site insertion, general and aerial views, floor-by-floor views, 3D plans, virtual
+    tours, an interactive neighbourhood map and video. Marketed as "valorisez tout votre programme
+    à partir d'un simple lien".
+  technology: >-
+    Vue single-page application. The shell is 1,294 bytes and carries meta robots "noindex, nofollow";
+    assets are content-hashed under /static/js/ and /static/css/. The server answers 200 with the same
+    shell for every path, so the host cannot be probed for documents.
+  observed_url_shape: >-
+    https://megawidget.habiteo.com/visite-virtuelle?id=<opaque-id>&type=<unit-type>&key=<opaque-key>&alternative=<n>
+  parameters_documented: false
+  parameters_note: >-
+    The id / type / key / alternative query parameters were observed on a live widget URL found in
+    public search results. Habiteo publishes no reference for them, so their semantics, stability
+    and whether `key` is a credential are all unknown. NOT reverse-engineered further and NOT
+    modelled as an API.
+  auth: unknown
+- family: Configurateur
+  name: Habiteo Configurator
+  kind: hosted-surface
+  delivery: URL / link
+  host: https://configurateur.habiteo.com/
+  detail: >-
+    The buyer-facing configurator that replaces a physical showroom: a prospect picks materials,
+    finishes and options for a unit and the choice flows back into myHabiteo as a personalised quote.
+  technology: Single-page application. Root returns a 691-byte shell; unknown paths return a real 404.
+  backend_note: >-
+    The MegaWidget bundle references https://configurateur.habiteo.com/back/material/ and
+    /back/prefab/ as backend endpoints. Both returned HTTP 502 Bad Gateway from nginx/1.13.1 when
+    probed on 2026-08-17. Recorded as an observation about availability, not as a documented API.
+  parameters_documented: false
+  auth: unknown
+- family: myHabiteo
+  name: myHabiteo mini-site
+  kind: hosted-surface
+  delivery: URL / link
+  host: https://my.habiteo.com/
+  detail: >-
+    The CGV describe a free mini-site bundled with the freemium myHabiteo tier. The operator console
+    itself sits behind https://my.habiteo.com/connexion and is not publicly reachable.
+  parameters_documented: false
+  auth: login
+loader_libraries: []
+loader_note: >-
+  No JavaScript loader, embed script or web-component tag is published for any of the surfaces above.
+embed_documentation:
+  published: false
+  detail: >-
+    No page on habiteo.com, info.habiteo.com or megawidget.habiteo.com documents how to embed these
+    surfaces. The internal wiki at https://wiki.habiteo.com/ (a Wiki.js instance branded "Wikiteo")
+    serves robots.txt "User-agent: * / Disallow: /" and its GraphQL endpoint rejects introspection,
+    so it was not crawled. If integration documentation exists, it is internal.
