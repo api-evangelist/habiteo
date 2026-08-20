@@ -22,6 +22,17 @@ created: '2026-08-17'
 modified: '2026-08-17'
 tags:
 - Company
+- Real-Estate
+- PropTech
+- 3D Visualization
+- Property Marketing
+- Configurator
+- CRM
+- France
+- Content
+- WordPress
+tags_raw:
+- Company
 - Real Estate
 - PropTech
 - 3D Visualization
@@ -237,6 +248,10 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://www.habiteo.com/wp-json
   tags:
+  - User
+  - WordPress
+  - REST
+  tags_raw:
   - Users
   - WordPress
   - REST
