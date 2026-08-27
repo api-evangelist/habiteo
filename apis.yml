@@ -45,10 +45,11 @@ tags_raw:
 apis:
 - aid: habiteo:posts-api
   name: Habiteo Site Content API — Posts API
-  description: News and blog posts published on habiteo.com, plus their revisions. DERIVED by API Evangelist
-    from the WordPress REST route index at https://www.habiteo.com/wp-json/ — this is the CMS content
-    API behind the marketing site, NOT a Habiteo product API. Habiteo publishes no contract for myHabiteo,
-    the configurator or the MegaWidget.
+  description: >-
+    News and blog posts published on habiteo.com, plus their revisions. DERIVED by API Evangelist from
+    the WordPress REST route index at https://www.habiteo.com/wp-json/ — this is the CMS content API behind
+    the marketing site, NOT a Habiteo product API. Habiteo publishes no contract for myHabiteo, the configurator
+    or the MegaWidget.
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://www.habiteo.com/wp-json
   tags:
@@ -73,10 +74,11 @@ apis:
     url: https://developer.wordpress.org/rest-api/
 - aid: habiteo:pages-api
   name: Habiteo Site Content API — Pages API
-  description: Marketing and product pages of habiteo.com, plus their revisions. DERIVED by API Evangelist
-    from the WordPress REST route index at https://www.habiteo.com/wp-json/ — this is the CMS content
-    API behind the marketing site, NOT a Habiteo product API. Habiteo publishes no contract for myHabiteo,
-    the configurator or the MegaWidget.
+  description: >-
+    Marketing and product pages of habiteo.com, plus their revisions. DERIVED by API Evangelist from the
+    WordPress REST route index at https://www.habiteo.com/wp-json/ — this is the CMS content API behind
+    the marketing site, NOT a Habiteo product API. Habiteo publishes no contract for myHabiteo, the configurator
+    or the MegaWidget.
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://www.habiteo.com/wp-json
   tags:
@@ -101,10 +103,11 @@ apis:
     url: https://developer.wordpress.org/rest-api/
 - aid: habiteo:media-api
   name: Habiteo Site Content API — Media API
-  description: The WordPress media library behind habiteo.com — images and documents. DERIVED by API Evangelist
-    from the WordPress REST route index at https://www.habiteo.com/wp-json/ — this is the CMS content
-    API behind the marketing site, NOT a Habiteo product API. Habiteo publishes no contract for myHabiteo,
-    the configurator or the MegaWidget.
+  description: >-
+    The WordPress media library behind habiteo.com — images and documents. DERIVED by API Evangelist from
+    the WordPress REST route index at https://www.habiteo.com/wp-json/ — this is the CMS content API behind
+    the marketing site, NOT a Habiteo product API. Habiteo publishes no contract for myHabiteo, the configurator
+    or the MegaWidget.
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://www.habiteo.com/wp-json
   tags:
@@ -129,10 +132,11 @@ apis:
     url: https://developer.wordpress.org/rest-api/
 - aid: habiteo:portfolio-api
   name: Habiteo Site Content API — Portfolio API
-  description: The `portfolio` custom post type used for Habiteo client and project showcases. DERIVED
-    by API Evangelist from the WordPress REST route index at https://www.habiteo.com/wp-json/ — this is
-    the CMS content API behind the marketing site, NOT a Habiteo product API. Habiteo publishes no contract
-    for myHabiteo, the configurator or the MegaWidget.
+  description: >-
+    The `portfolio` custom post type used for Habiteo client and project showcases. DERIVED by API Evangelist
+    from the WordPress REST route index at https://www.habiteo.com/wp-json/ — this is the CMS content
+    API behind the marketing site, NOT a Habiteo product API. Habiteo publishes no contract for myHabiteo,
+    the configurator or the MegaWidget.
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://www.habiteo.com/wp-json
   tags:
@@ -157,10 +161,11 @@ apis:
     url: https://developer.wordpress.org/rest-api/
 - aid: habiteo:blocks-api
   name: Habiteo Site Content API — Blocks API
-  description: The `uncodeblock` custom post type from the Uncode theme — reusable page blocks. DERIVED
-    by API Evangelist from the WordPress REST route index at https://www.habiteo.com/wp-json/ — this is
-    the CMS content API behind the marketing site, NOT a Habiteo product API. Habiteo publishes no contract
-    for myHabiteo, the configurator or the MegaWidget.
+  description: >-
+    The `uncodeblock` custom post type from the Uncode theme — reusable page blocks. DERIVED by API Evangelist
+    from the WordPress REST route index at https://www.habiteo.com/wp-json/ — this is the CMS content
+    API behind the marketing site, NOT a Habiteo product API. Habiteo publishes no contract for myHabiteo,
+    the configurator or the MegaWidget.
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://www.habiteo.com/wp-json
   tags:
@@ -185,10 +190,11 @@ apis:
     url: https://developer.wordpress.org/rest-api/
 - aid: habiteo:taxonomy-api
   name: Habiteo Site Content API — Taxonomy API
-  description: Categories, tags, portfolio categories and the taxonomy registry. DERIVED by API Evangelist
-    from the WordPress REST route index at https://www.habiteo.com/wp-json/ — this is the CMS content
-    API behind the marketing site, NOT a Habiteo product API. Habiteo publishes no contract for myHabiteo,
-    the configurator or the MegaWidget.
+  description: >-
+    Categories, tags, portfolio categories and the taxonomy registry. DERIVED by API Evangelist from the
+    WordPress REST route index at https://www.habiteo.com/wp-json/ — this is the CMS content API behind
+    the marketing site, NOT a Habiteo product API. Habiteo publishes no contract for myHabiteo, the configurator
+    or the MegaWidget.
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://www.habiteo.com/wp-json
   tags:
@@ -213,10 +219,11 @@ apis:
     url: https://developer.wordpress.org/rest-api/
 - aid: habiteo:discovery-api
   name: Habiteo Site Content API — Discovery API
-  description: The wp-json route index and the registered post types and statuses — the route-discovery
-    surface this profile was derived from. DERIVED by API Evangelist from the WordPress REST route index
-    at https://www.habiteo.com/wp-json/ — this is the CMS content API behind the marketing site, NOT a
-    Habiteo product API. Habiteo publishes no contract for myHabiteo, the configurator or the MegaWidget.
+  description: >-
+    The wp-json route index and the registered post types and statuses — the route-discovery surface this
+    profile was derived from. DERIVED by API Evangelist from the WordPress REST route index at https://www.habiteo.com/wp-json/
+    — this is the CMS content API behind the marketing site, NOT a Habiteo product API. Habiteo publishes
+    no contract for myHabiteo, the configurator or the MegaWidget.
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://www.habiteo.com/wp-json
   tags:
@@ -241,10 +248,11 @@ apis:
     url: https://developer.wordpress.org/rest-api/
 - aid: habiteo:users-api
   name: Habiteo Site Content API — Users API
-  description: Post authors exposed by the WordPress users route. Read-only for anonymous callers. DERIVED
-    by API Evangelist from the WordPress REST route index at https://www.habiteo.com/wp-json/ — this is
-    the CMS content API behind the marketing site, NOT a Habiteo product API. Habiteo publishes no contract
-    for myHabiteo, the configurator or the MegaWidget.
+  description: >-
+    Post authors exposed by the WordPress users route. Read-only for anonymous callers. DERIVED by API
+    Evangelist from the WordPress REST route index at https://www.habiteo.com/wp-json/ — this is the CMS
+    content API behind the marketing site, NOT a Habiteo product API. Habiteo publishes no contract for
+    myHabiteo, the configurator or the MegaWidget.
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://www.habiteo.com/wp-json
   tags:
@@ -272,10 +280,11 @@ apis:
     url: https://developer.wordpress.org/rest-api/
 - aid: habiteo:comments-api
   name: Habiteo Site Content API — Comments API
-  description: Site comments. The comment collection is anonymously readable. DERIVED by API Evangelist
-    from the WordPress REST route index at https://www.habiteo.com/wp-json/ — this is the CMS content
-    API behind the marketing site, NOT a Habiteo product API. Habiteo publishes no contract for myHabiteo,
-    the configurator or the MegaWidget.
+  description: >-
+    Site comments. The comment collection is anonymously readable. DERIVED by API Evangelist from the
+    WordPress REST route index at https://www.habiteo.com/wp-json/ — this is the CMS content API behind
+    the marketing site, NOT a Habiteo product API. Habiteo publishes no contract for myHabiteo, the configurator
+    or the MegaWidget.
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://www.habiteo.com/wp-json
   tags:
@@ -299,8 +308,9 @@ apis:
     url: https://developer.wordpress.org/rest-api/
 - aid: habiteo:settings-api
   name: Habiteo Site Content API — Settings API
-  description: Site settings. Anonymous calls return HTTP 403 rest_forbidden — recorded as a gated route,
-    not a readable one. DERIVED by API Evangelist from the WordPress REST route index at https://www.habiteo.com/wp-json/
+  description: >-
+    Site settings. Anonymous calls return HTTP 403 rest_forbidden — recorded as a gated route, not a readable
+    one. DERIVED by API Evangelist from the WordPress REST route index at https://www.habiteo.com/wp-json/
     — this is the CMS content API behind the marketing site, NOT a Habiteo product API. Habiteo publishes
     no contract for myHabiteo, the configurator or the MegaWidget.
   humanURL: https://developer.wordpress.org/rest-api/
@@ -324,39 +334,13 @@ apis:
     url: data-model/habiteo-data-model.yml
   - type: Documentation
     url: https://developer.wordpress.org/rest-api/
-- aid: habiteo:contact-forms-api
-  name: Habiteo Site Content API — Contact Forms API
-  description: Contact Form 7 routes, including the public feedback (form submission) endpoint used by
-    the site contact form. DERIVED by API Evangelist from the WordPress REST route index at https://www.habiteo.com/wp-json/
-    — this is the CMS content API behind the marketing site, NOT a Habiteo product API. Habiteo publishes
-    no contract for myHabiteo, the configurator or the MegaWidget.
-  humanURL: https://developer.wordpress.org/rest-api/
-  baseURL: https://www.habiteo.com/wp-json
-  tags:
-  - Forms
-  - WordPress
-  - REST
-  properties:
-  - type: OpenAPI
-    url: openapi/habiteo-contact-forms-api-openapi.yml
-  - type: Overlay
-    url: overlays/habiteo-content-overlay.yaml
-  - type: Authentication
-    url: authentication/habiteo-authentication.yml
-  - type: Conventions
-    url: conventions/habiteo-conventions.yml
-  - type: ErrorCatalog
-    url: errors/habiteo-problem-types.yml
-  - type: DataModel
-    url: data-model/habiteo-data-model.yml
-  - type: Documentation
-    url: https://developer.wordpress.org/rest-api/
 - aid: habiteo:oembed-api
   name: Habiteo Site Content API — oEmbed API
-  description: The WordPress oEmbed provider endpoint for habiteo.com URLs. DERIVED by API Evangelist
-    from the WordPress REST route index at https://www.habiteo.com/wp-json/ — this is the CMS content
-    API behind the marketing site, NOT a Habiteo product API. Habiteo publishes no contract for myHabiteo,
-    the configurator or the MegaWidget.
+  description: >-
+    The WordPress oEmbed provider endpoint for habiteo.com URLs. DERIVED by API Evangelist from the WordPress
+    REST route index at https://www.habiteo.com/wp-json/ — this is the CMS content API behind the marketing
+    site, NOT a Habiteo product API. Habiteo publishes no contract for myHabiteo, the configurator or
+    the MegaWidget.
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://www.habiteo.com/wp-json
   tags:
@@ -379,38 +363,11 @@ apis:
     url: data-model/habiteo-data-model.yml
   - type: Documentation
     url: https://developer.wordpress.org/rest-api/
-- aid: habiteo:site-tools-api
-  name: Habiteo Site Content API — Site Tools API
-  description: Yoast SEO and Popup Maker plugin routes registered in the same index. Admin-oriented; anonymous
-    calls are rejected. DERIVED by API Evangelist from the WordPress REST route index at https://www.habiteo.com/wp-json/
-    — this is the CMS content API behind the marketing site, NOT a Habiteo product API. Habiteo publishes
-    no contract for myHabiteo, the configurator or the MegaWidget.
-  humanURL: https://developer.wordpress.org/rest-api/
-  baseURL: https://www.habiteo.com/wp-json
-  tags:
-  - SEO
-  - Plugins
-  - WordPress
-  - REST
-  properties:
-  - type: OpenAPI
-    url: openapi/habiteo-site-tools-api-openapi.yml
-  - type: Overlay
-    url: overlays/habiteo-content-overlay.yaml
-  - type: Authentication
-    url: authentication/habiteo-authentication.yml
-  - type: Conventions
-    url: conventions/habiteo-conventions.yml
-  - type: ErrorCatalog
-    url: errors/habiteo-problem-types.yml
-  - type: DataModel
-    url: data-model/habiteo-data-model.yml
-  - type: Documentation
-    url: https://developer.wordpress.org/rest-api/
 - aid: habiteo:json-api-plugin
   name: Habiteo Site JSON API (WordPress JSON API plugin)
-  description: A second, older JSON surface on www.habiteo.com, served by the WordPress "JSON API" plugin
-    at /api/. GET https://www.habiteo.com/api/ returns {"status":"ok","json_api_version":"1.1.1","controllers":["core"]}
+  description: >-
+    A second, older JSON surface on www.habiteo.com, served by the WordPress "JSON API" plugin at /api/.
+    GET https://www.habiteo.com/api/ returns {"status":"ok","json_api_version":"1.1.1","controllers":["core"]}
     and the `core` controller answers get_recent_posts, get_page_index, get_category_index and friends
     at /api/core/<method>/. Probed anonymously on 2026-08-17. Like the wp-json surface this is CMS plumbing,
     not a Habiteo product API, and Habiteo documents neither.
@@ -426,6 +383,46 @@ apis:
     url: conventions/habiteo-conventions.yml
   - type: ErrorCatalog
     url: errors/habiteo-problem-types.yml
+- aid: habiteo:habiteo-contactforms-api
+  name: Habiteo Contact Forms API
+  description: The ContactForms API from Habiteo — 5 operation(s) for contactforms.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.habiteo.com/wp-json
+  tags:
+  - ContactForms
+  properties:
+  - type: OpenAPI
+    url: openapi/habiteo-contactforms-api-openapi.yml
+  - type: Authentication
+    url: authentication/habiteo-authentication.yml
+  - type: Conventions
+    url: conventions/habiteo-conventions.yml
+  - type: ErrorCatalog
+    url: errors/habiteo-problem-types.yml
+  - type: DataModel
+    url: data-model/habiteo-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: habiteo:habiteo-sitetools-api
+  name: Habiteo Site Tools API
+  description: The SiteTools API from Habiteo — 7 operation(s) for sitetools.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.habiteo.com/wp-json
+  tags:
+  - SiteTools
+  properties:
+  - type: OpenAPI
+    url: openapi/habiteo-sitetools-api-openapi.yml
+  - type: Authentication
+    url: authentication/habiteo-authentication.yml
+  - type: Conventions
+    url: conventions/habiteo-conventions.yml
+  - type: ErrorCatalog
+    url: errors/habiteo-problem-types.yml
+  - type: DataModel
+    url: data-model/habiteo-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
