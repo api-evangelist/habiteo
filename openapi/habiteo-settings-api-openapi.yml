@@ -3,17 +3,10 @@ info:
   title: Habiteo Site Content API (WordPress REST wp-json) Settings API
   version: wp-json
   summary: Anonymous read surface of the WordPress REST API that www.habiteo.com serves.
-  description: 'Habiteo publishes www.habiteo.com on WordPress, which exposes the WordPress REST API at https://www.habiteo.com/wp-json/.
-    The wp/v2 namespace is anonymously readable and returns the company''s news posts, marketing pages, portfolio
-    entries, media library, taxonomies and users as JSON.
+  description: 'Habiteo publishes www.habiteo.com on WordPress, which exposes the WordPress REST API at https://www.habiteo.com/wp-json/. The wp/v2 namespace is anonymously readable and returns the company''s news posts, marketing pages, portfolio entries, media library, taxonomies and users as JSON.
 
 
-    This document was DERIVED mechanically by API Evangelist from the route-discovery document served at https://www.habiteo.com/wp-json/
-    on 2026-08-17 — every path, method and parameter below is taken verbatim from that descriptor. Habiteo publishes
-    no OpenAPI, no developer portal and no API documentation of its own, and THIS IS NOT A HABITEO PRODUCT API:
-    it is the content API the CMS exposes. Habiteo''s actual products (myHabiteo, the 3D configurator, the MegaWidget)
-    have no published contract. Write operations exist on these routes but require WordPress authentication (Application
-    Passwords over HTTP Basic, or a cookie + nonce).'
+    This document was DERIVED mechanically by API Evangelist from the route-discovery document served at https://www.habiteo.com/wp-json/ on 2026-08-17 — every path, method and parameter below is taken verbatim from that descriptor. Habiteo publishes no OpenAPI, no developer portal and no API documentation of its own, and THIS IS NOT A HABITEO PRODUCT API: it is the content API the CMS exposes. Habiteo''s actual products (myHabiteo, the 3D configurator, the MegaWidget) have no published contract. Write operations exist on these routes but require WordPress authentication (Application Passwords over HTTP Basic, or a cookie + nonce).'
   contact:
     name: Habiteo
     url: https://www.habiteo.com/
@@ -120,8 +113,7 @@ paths:
                   enum:
                   - open
                   - closed
-                  description: Autoriser les liens de notification d’autres blogs (pings et rétroliens) sur les
-                    nouveaux articles.
+                  description: Autoriser les liens de notification d’autres blogs (pings et rétroliens) sur les nouveaux articles.
                 default_comment_status:
                   type: string
                   enum:
@@ -163,16 +155,6 @@ paths:
       - basicAuth: []
       - cookieNonce: []
 components:
-  securitySchemes:
-    basicAuth:
-      type: http
-      scheme: basic
-      description: WordPress Application Passwords over HTTP Basic. Required for every write operation.
-    cookieNonce:
-      type: apiKey
-      in: header
-      name: X-WP-Nonce
-      description: WordPress logged-in cookie plus an X-WP-Nonce header, used by first-party admin clients.
   schemas:
     WPError:
       type: object
@@ -190,3 +172,13 @@ components:
             status:
               type: integer
               description: HTTP status repeated in the body.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: WordPress Application Passwords over HTTP Basic. Required for every write operation.
+    cookieNonce:
+      type: apiKey
+      in: header
+      name: X-WP-Nonce
+      description: WordPress logged-in cookie plus an X-WP-Nonce header, used by first-party admin clients.

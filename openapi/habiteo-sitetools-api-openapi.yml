@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Habiteo Site Content API (WordPress REST wp-json) Discovery API
+  title: Habiteo Site Content API (WordPress REST wp-json) Site Tools API
   version: wp-json
   summary: Anonymous read surface of the WordPress REST API that www.habiteo.com serves.
   description: 'Habiteo publishes www.habiteo.com on WordPress, which exposes the WordPress REST API at https://www.habiteo.com/wp-json/. The wp/v2 namespace is anonymously readable and returns the company''s news posts, marketing pages, portfolio entries, media library, taxonomies and users as JSON.
@@ -18,65 +18,21 @@ servers:
 - url: https://www.habiteo.com/wp-json
   description: Production
 tags:
-- name: Discovery
+- name: SiteTools
 paths:
-  /:
+  /pum/v1:
     get:
-      operationId: getRouteIndex
-      summary: GET /
+      operationId: getPumV1
+      summary: GET /pum/v1
       tags:
-      - Discovery
-      parameters:
-      - name: context
-        in: query
-        required: false
-        schema:
-          type: string
-          default: view
-      responses:
-        '200':
-          description: Successful response.
-          content:
-            application/json:
-              schema:
-                type: object
-        '400':
-          description: Invalid parameter.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/WPError'
-        '401':
-          description: Not authenticated.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/WPError'
-        '403':
-          description: rest_forbidden — the anonymous caller may not perform this action.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/WPError'
-        '404':
-          description: No route or resource matched.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/WPError'
-  /wp/v2:
-    get:
-      operationId: getWpV2Index
-      summary: GET /wp/v2
-      tags:
-      - Discovery
+      - SiteTools
       parameters:
       - name: namespace
         in: query
         required: false
         schema:
           type: string
-          default: wp/v2
+          default: pum/v1
       - name: context
         in: query
         required: false
@@ -114,24 +70,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WPError'
-  /wp/v2/statuses:
+  /pum/v1/analytics:
     get:
-      operationId: getWpV2Statuses
-      summary: GET /wp/v2/statuses
+      operationId: getPumV1Analytics
+      summary: GET /pum/v1/analytics
       tags:
-      - Discovery
+      - SiteTools
       parameters:
-      - name: context
+      - name: event
         in: query
-        required: false
+        required: true
         schema:
           type: string
-          enum:
-          - view
-          - embed
-          - edit
-          default: view
-        description: Le contexte dans lequel la requête est faite ; cela détermine les champs renvoyés.
+        description: Event Type
+      - name: pid
+        in: query
+        required: true
+        schema:
+          type: integer
+        description: Popup ID
       responses:
         '200':
           description: Successful response.
@@ -163,31 +120,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WPError'
-  /wp/v2/statuses/{status}:
-    parameters:
-    - name: status
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Route parameter `status` declared by the WordPress route index.
+  /yoast/v1:
     get:
-      operationId: getWpV2StatusesStatus
-      summary: GET /wp/v2/statuses/{status}
+      operationId: getYoastV1
+      summary: GET /yoast/v1
       tags:
-      - Discovery
+      - SiteTools
       parameters:
+      - name: namespace
+        in: query
+        required: false
+        schema:
+          type: string
+          default: yoast/v1
       - name: context
         in: query
         required: false
         schema:
           type: string
-          enum:
-          - view
-          - embed
-          - edit
           default: view
-        description: Le contexte dans lequel la requête est faite ; cela détermine les champs renvoyés.
       responses:
         '200':
           description: Successful response.
@@ -219,24 +170,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WPError'
-  /wp/v2/types:
+  /yoast/v1/configurator:
     get:
-      operationId: getWpV2Types
-      summary: GET /wp/v2/types
+      operationId: getYoastV1Configurator
+      summary: GET /yoast/v1/configurator
       tags:
-      - Discovery
-      parameters:
-      - name: context
-        in: query
-        required: false
-        schema:
-          type: string
-          enum:
-          - view
-          - embed
-          - edit
-          default: view
-        description: Le contexte dans lequel la requête est faite ; cela détermine les champs renvoyés.
+      - SiteTools
       responses:
         '200':
           description: Successful response.
@@ -268,31 +207,125 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WPError'
-  /wp/v2/types/{type}:
-    parameters:
-    - name: type
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Route parameter `type` declared by the WordPress route index.
-    get:
-      operationId: getWpV2TypesType
-      summary: GET /wp/v2/types/{type}
+    post:
+      operationId: postYoastV1Configurator
+      summary: POST /yoast/v1/configurator
       tags:
-      - Discovery
-      parameters:
-      - name: context
-        in: query
-        required: false
-        schema:
-          type: string
-          enum:
-          - view
-          - embed
-          - edit
-          default: view
-        description: Le contexte dans lequel la requête est faite ; cela détermine les champs renvoyés.
+      - SiteTools
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+      security:
+      - basicAuth: []
+      - cookieNonce: []
+  /yoast/v1/reindex_posts:
+    get:
+      operationId: getYoastV1Reindexposts
+      summary: GET /yoast/v1/reindex_posts
+      tags:
+      - SiteTools
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /yoast/v1/ryte:
+    get:
+      operationId: getYoastV1Ryte
+      summary: GET /yoast/v1/ryte
+      tags:
+      - SiteTools
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Not authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: rest_forbidden — the anonymous caller may not perform this action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /yoast/v1/statistics:
+    get:
+      operationId: getYoastV1Statistics
+      summary: GET /yoast/v1/statistics
+      tags:
+      - SiteTools
       responses:
         '200':
           description: Successful response.

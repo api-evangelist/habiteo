@@ -1,0 +1,43 @@
+{
+  "provider": "habiteo",
+  "sources": [
+    "habiteo-blocks-api-openapi.yml",
+    "habiteo-comments-api-openapi.yml",
+    "habiteo-contact-forms-api-openapi.yml",
+    "habiteo-discovery-api-openapi.yml",
+    "habiteo-media-api-openapi.yml",
+    "habiteo-oembed-api-openapi.yml",
+    "habiteo-pages-api-openapi.yml",
+    "habiteo-portfolio-api-openapi.yml",
+    "habiteo-posts-api-openapi.yml",
+    "habiteo-settings-api-openapi.yml",
+    "habiteo-site-tools-api-openapi.yml",
+    "habiteo-taxonomy-api-openapi.yml",
+    "habiteo-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "habiteo-blocks-api-openapi.yml",
+    "habiteo-comments-api-openapi.yml",
+    "habiteo-contactforms-api-openapi.yml",
+    "habiteo-discovery-api-openapi.yml",
+    "habiteo-media-api-openapi.yml",
+    "habiteo-oembed-api-openapi.yml",
+    "habiteo-pages-api-openapi.yml",
+    "habiteo-portfolio-api-openapi.yml",
+    "habiteo-posts-api-openapi.yml",
+    "habiteo-settings-api-openapi.yml",
+    "habiteo-sitetools-api-openapi.yml",
+    "habiteo-taxonomy-api-openapi.yml",
+    "habiteo-users-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi/habiteo-contact-forms-api-openapi.yml",
+    "archived openapi/habiteo-site-tools-api-openapi.yml"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "apis.yml register: written (+2 apis, 14 total)"
+  ],
+  "skipped": []
+}

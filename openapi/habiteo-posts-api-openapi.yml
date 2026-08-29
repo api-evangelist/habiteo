@@ -3,17 +3,10 @@ info:
   title: Habiteo Site Content API (WordPress REST wp-json) Posts API
   version: wp-json
   summary: Anonymous read surface of the WordPress REST API that www.habiteo.com serves.
-  description: 'Habiteo publishes www.habiteo.com on WordPress, which exposes the WordPress REST API at https://www.habiteo.com/wp-json/.
-    The wp/v2 namespace is anonymously readable and returns the company''s news posts, marketing pages, portfolio
-    entries, media library, taxonomies and users as JSON.
+  description: 'Habiteo publishes www.habiteo.com on WordPress, which exposes the WordPress REST API at https://www.habiteo.com/wp-json/. The wp/v2 namespace is anonymously readable and returns the company''s news posts, marketing pages, portfolio entries, media library, taxonomies and users as JSON.
 
 
-    This document was DERIVED mechanically by API Evangelist from the route-discovery document served at https://www.habiteo.com/wp-json/
-    on 2026-08-17 — every path, method and parameter below is taken verbatim from that descriptor. Habiteo publishes
-    no OpenAPI, no developer portal and no API documentation of its own, and THIS IS NOT A HABITEO PRODUCT API:
-    it is the content API the CMS exposes. Habiteo''s actual products (myHabiteo, the 3D configurator, the MegaWidget)
-    have no published contract. Write operations exist on these routes but require WordPress authentication (Application
-    Passwords over HTTP Basic, or a cookie + nonce).'
+    This document was DERIVED mechanically by API Evangelist from the route-discovery document served at https://www.habiteo.com/wp-json/ on 2026-08-17 — every path, method and parameter below is taken verbatim from that descriptor. Habiteo publishes no OpenAPI, no developer portal and no API documentation of its own, and THIS IS NOT A HABITEO PRODUCT API: it is the content API the CMS exposes. Habiteo''s actual products (myHabiteo, the 3D configurator, the MegaWidget) have no published contract. Write operations exist on these routes but require WordPress authentication (Application Passwords over HTTP Basic, or a cookie + nonce).'
   contact:
     name: Habiteo
     url: https://www.habiteo.com/
@@ -178,8 +171,7 @@ paths:
           default: []
           items:
             type: integer
-        description: Limiter le jeu de résultats aux éléments qui ont le terme spécifié assigné dans la taxonomie
-          categories.
+        description: Limiter le jeu de résultats aux éléments qui ont le terme spécifié assigné dans la taxonomie categories.
       - name: categories_exclude
         in: query
         required: false
@@ -188,8 +180,7 @@ paths:
           default: []
           items:
             type: integer
-        description: Limiter le jeu de résultats à tous les éléments sauf ceux qui ont un terme spécifique assigné
-          à la taxonomie categories.
+        description: Limiter le jeu de résultats à tous les éléments sauf ceux qui ont un terme spécifique assigné à la taxonomie categories.
       - name: tags
         in: query
         required: false
@@ -198,8 +189,7 @@ paths:
           default: []
           items:
             type: integer
-        description: Limiter le jeu de résultats aux éléments qui ont le terme spécifié assigné dans la taxonomie
-          tags.
+        description: Limiter le jeu de résultats aux éléments qui ont le terme spécifié assigné dans la taxonomie tags.
       - name: tags_exclude
         in: query
         required: false
@@ -208,8 +198,7 @@ paths:
           default: []
           items:
             type: integer
-        description: Limiter le jeu de résultats à tous les éléments sauf ceux qui ont un terme spécifique assigné
-          à la taxonomie tags.
+        description: Limiter le jeu de résultats à tous les éléments sauf ceux qui ont un terme spécifique assigné à la taxonomie tags.
       - name: sticky
         in: query
         required: false
@@ -780,16 +769,6 @@ paths:
       - basicAuth: []
       - cookieNonce: []
 components:
-  securitySchemes:
-    basicAuth:
-      type: http
-      scheme: basic
-      description: WordPress Application Passwords over HTTP Basic. Required for every write operation.
-    cookieNonce:
-      type: apiKey
-      in: header
-      name: X-WP-Nonce
-      description: WordPress logged-in cookie plus an X-WP-Nonce header, used by first-party admin clients.
   schemas:
     WPError:
       type: object
@@ -807,3 +786,13 @@ components:
             status:
               type: integer
               description: HTTP status repeated in the body.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: WordPress Application Passwords over HTTP Basic. Required for every write operation.
+    cookieNonce:
+      type: apiKey
+      in: header
+      name: X-WP-Nonce
+      description: WordPress logged-in cookie plus an X-WP-Nonce header, used by first-party admin clients.
