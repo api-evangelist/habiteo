@@ -13,6 +13,18 @@ description: 'Habiteo is a French PropTech company founded in 2014 in Paris that
   in May 2022 and continues to operate under its own brand. Habiteo publishes no public developer programme,
   no API documentation and no machine-readable API contract for any of these products; the only anonymously
   readable machine surface on its domain is the WordPress REST API behind its marketing site.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://www.habiteo.com/wp-content/uploads/2017/02/Logo_Habiteo_Hz_Bg-transparent-1.png
 url: https://raw.githubusercontent.com/api-evangelist/habiteo/refs/heads/main/apis.yml
 x-type: company
