@@ -401,6 +401,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://www.habiteo.com/wp-json
   tags:
+  - Contact Forms
+  tags_raw:
   - ContactForms
   properties:
   - type: OpenAPI
