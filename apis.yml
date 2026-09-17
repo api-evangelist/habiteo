@@ -361,35 +361,6 @@ apis:
     url: data-model/habiteo-data-model.yml
   - type: Documentation
     url: https://developer.wordpress.org/rest-api/
-- aid: habiteo:oembed-api
-  name: Habiteo Site Content API — oEmbed API
-  description: >-
-    The WordPress oEmbed provider endpoint for habiteo.com URLs. DERIVED by API Evangelist from the WordPress
-    REST route index at https://www.habiteo.com/wp-json/ — this is the CMS content API behind the marketing
-    site, NOT a Habiteo product API. Habiteo publishes no contract for myHabiteo, the configurator or
-    the MegaWidget.
-  humanURL: https://developer.wordpress.org/rest-api/
-  baseURL: https://www.habiteo.com/wp-json
-  tags:
-  - oEmbed
-  - Embedding
-  - WordPress
-  - REST
-  properties:
-  - type: OpenAPI
-    url: openapi/habiteo-oembed-api-openapi.yml
-  - type: Overlay
-    url: overlays/habiteo-content-overlay.yaml
-  - type: Authentication
-    url: authentication/habiteo-authentication.yml
-  - type: Conventions
-    url: conventions/habiteo-conventions.yml
-  - type: ErrorCatalog
-    url: errors/habiteo-problem-types.yml
-  - type: DataModel
-    url: data-model/habiteo-data-model.yml
-  - type: Documentation
-    url: https://developer.wordpress.org/rest-api/
 - aid: habiteo:json-api-plugin
   name: Habiteo Site JSON API (WordPress JSON API plugin)
   description: >-
@@ -442,6 +413,26 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/habiteo-sitetools-api-openapi.yml
+  - type: Authentication
+    url: authentication/habiteo-authentication.yml
+  - type: Conventions
+    url: conventions/habiteo-conventions.yml
+  - type: ErrorCatalog
+    url: errors/habiteo-problem-types.yml
+  - type: DataModel
+    url: data-model/habiteo-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: habiteo:habiteo-o-embed-api
+  name: Habiteo o Embed API
+  description: The o Embed API from Habiteo — 2 operation(s) for o embed.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.habiteo.com/wp-json
+  tags:
+  - o Embed
+  properties:
+  - type: OpenAPI
+    url: openapi/habiteo-o-embed-api-openapi.yml
   - type: Authentication
     url: authentication/habiteo-authentication.yml
   - type: Conventions
