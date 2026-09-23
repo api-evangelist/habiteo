@@ -1,43 +1,56 @@
 {
   "provider": "habiteo",
   "sources": [
+    "_ae-authored/habiteo-contact-forms-api-openapi.yml",
+    "_ae-authored/habiteo-site-tools-api-openapi.yml",
     "habiteo-blocks-api-openapi.yml",
     "habiteo-comments-api-openapi.yml",
-    "habiteo-contact-forms-api-openapi.yml",
     "habiteo-discovery-api-openapi.yml",
     "habiteo-media-api-openapi.yml",
-    "habiteo-oembed-api-openapi.yml",
+    "habiteo-o-embed-api-openapi.yml",
     "habiteo-pages-api-openapi.yml",
     "habiteo-portfolio-api-openapi.yml",
     "habiteo-posts-api-openapi.yml",
     "habiteo-settings-api-openapi.yml",
-    "habiteo-site-tools-api-openapi.yml",
     "habiteo-taxonomy-api-openapi.yml",
     "habiteo-users-api-openapi.yml"
   ],
   "outputs": [
+    "habiteo-contactforms-api-openapi.yml",
+    "habiteo-sitetools-api-openapi.yml",
     "habiteo-blocks-api-openapi.yml",
     "habiteo-comments-api-openapi.yml",
-    "habiteo-contactforms-api-openapi.yml",
     "habiteo-discovery-api-openapi.yml",
     "habiteo-media-api-openapi.yml",
-    "habiteo-oembed-api-openapi.yml",
+    "habiteo-o-embed-api-openapi.yml",
     "habiteo-pages-api-openapi.yml",
     "habiteo-portfolio-api-openapi.yml",
     "habiteo-posts-api-openapi.yml",
     "habiteo-settings-api-openapi.yml",
-    "habiteo-sitetools-api-openapi.yml",
     "habiteo-taxonomy-api-openapi.yml",
     "habiteo-users-api-openapi.yml"
   ],
-  "archived": [
-    "archived openapi/habiteo-contact-forms-api-openapi.yml",
-    "archived openapi/habiteo-site-tools-api-openapi.yml"
-  ],
+  "archived": [],
   "errors": [],
-  "warnings": [],
-  "notes": [
-    "apis.yml register: written (+2 apis, 14 total)"
+  "warnings": [
+    "habiteo-blocks-api-openapi.yml: previously refined output kept for 8 operation(s) no archived document covers (e.g. /wp/v2/uncodeblock get, /wp/v2/uncodeblock post, /wp/v2/uncodeblock/{id} delete); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "habiteo-comments-api-openapi.yml: previously refined output kept for 5 operation(s) no archived document covers (e.g. /wp/v2/comments get, /wp/v2/comments post, /wp/v2/comments/{id} delete); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "habiteo-discovery-api-openapi.yml: previously refined output kept for 6 operation(s) no archived document covers (e.g. / get, /wp/v2 get, /wp/v2/statuses get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "habiteo-media-api-openapi.yml: previously refined output kept for 5 operation(s) no archived document covers (e.g. /wp/v2/media get, /wp/v2/media post, /wp/v2/media/{id} delete); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "habiteo-o-embed-api-openapi.yml: previously refined output kept for 2 operation(s) no archived document covers (e.g. /oembed/1.0 get, /oembed/1.0/embed get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "habiteo-pages-api-openapi.yml: previously refined output kept for 8 operation(s) no archived document covers (e.g. /wp/v2/pages get, /wp/v2/pages post, /wp/v2/pages/{id} delete); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "habiteo-portfolio-api-openapi.yml: previously refined output kept for 8 operation(s) no archived document covers (e.g. /wp/v2/portfolio get, /wp/v2/portfolio post, /wp/v2/portfolio/{id} delete); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "habiteo-posts-api-openapi.yml: previously refined output kept for 8 operation(s) no archived document covers (e.g. /wp/v2/posts get, /wp/v2/posts post, /wp/v2/posts/{id} delete); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "habiteo-settings-api-openapi.yml: previously refined output kept for 2 operation(s) no archived document covers (e.g. /wp/v2/settings get, /wp/v2/settings post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "habiteo-taxonomy-api-openapi.yml: previously refined output kept for 17 operation(s) no archived document covers (e.g. /wp/v2/categories get, /wp/v2/categories post, /wp/v2/categories/{id} delete); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "habiteo-users-api-openapi.yml: previously refined output kept for 8 operation(s) no archived document covers (e.g. /wp/v2/users get, /wp/v2/users post, /wp/v2/users/me delete); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth."
   ],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "habiteo-contactforms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "habiteo-sitetools-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
