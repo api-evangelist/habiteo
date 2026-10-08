@@ -111,6 +111,10 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Plans
+  url: plans/habiteo-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/habiteo-rate-limits.yml
 - type: Website
   url: https://www.habiteo.com/
 - type: Blog
