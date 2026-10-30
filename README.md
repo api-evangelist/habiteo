@@ -64,6 +64,106 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Habiteo is a company surfaced as a portfolio company of serena and added to the API Evangelist network as a stub for enrichment. Sector: saas. This profile is a lead awaiting the enrichment pipeline.
+Habiteo is a French PropTech company founded in 2014 in Paris that builds full-web 3D sales and marketing technology for new-build real estate. Its products let developers, house builders, commercial-property operators and their agencies model a programme in 3D before it is built: 3D floor plans and perspectives, virtual tours, drone-based site insertions and neighbourhood views (Modelisation and myHabiteo Studio), an interior configurator that lets a buyer choose materials and options in place of a physical showroom (Configurateur), a mobile on-site sales unit (Habiteo Truck), and the MegaWidget, a hosted mini-site that gathers every 3D asset for a programme behind a single link. myHabiteo is the operator platform that binds the 3D layer to commercialisation with a CRM, a reservation module, programme management and sales and marketing dashboards. More than 350 developers, including Nexity, Kaufman & Broad and Immobiliere 3F, have used the technology. Habiteo was acquired by the French listings portal Bien'ici in May 2022 and continues to operate under its own brand. Habiteo publishes no public developer programme, no API documentation and no machine-readable API contract for any of these products; the only anonymously readable machine surface on its domain is the WordPress REST API behind its marketing site.
 
-Source: portfolio company of [serena](https://github.com/api-evangelist/serena) — https://www.habiteo.com/
+**Areas:** Company · Real Estate · PropTech · 3D Visualization · Property Marketing · Configurator · CRM · France · Content · WordPress
+
+## Habiteo on APIs.io
+
+Everything profiled for Habiteo is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/habiteo/](https://apis.io/providers/habiteo/)** — or go straight to one of the APIs or properties below.
+
+### APIs (2)
+
+- [Habiteo Website (WordPress REST)](https://apis.io/apis/habiteo/habiteo-com-website-wordpress-rest/) — The public WordPress REST API (wp-json) of the Habiteo website at www.habiteo.com: the route index of the site's content management system, catalogued as…
+- [Habiteo Site JSON API (WordPress JSON API plugin)](https://apis.io/apis/habiteo/json-api-plugin/) — A second, older JSON surface on www.habiteo.com, served by the WordPress "JSON API" plugin at /api/. GET https://www.habiteo.com/api/ returns…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [habiteo-mcp.yml](https://apis.io/servers/habiteo/habiteo-mcp-yml/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Habiteo Authentication](https://apis.io/security/habiteo/habiteo-authentication/)
+- [Habiteo Domain Security](https://apis.io/security/habiteo/habiteo-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Habiteo Plans Pricing](https://apis.io/plans/habiteo/habiteo-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Habiteo Rate Limits](https://apis.io/rate-limits/habiteo/habiteo-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.habiteo.com/)
+- [Support](https://www.habiteo.com/fr/contact/)
+- [Blog](https://www.habiteo.com/fr/actualite-habiteo/)
+- [Terms of service](https://www.habiteo.com/fr/conditions-generales-de-vente/)
+
+## API Evangelist rating
+
+**Kin Score 17.1** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 58.0 |
+| Contract quality | 1.7 |
+| Contract governance | 4.5 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 30.4 |
+| Access clarity | 17.1 |
+
+**Agent readiness 8.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 20.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/habiteo/](https://apis.io/providers/habiteo/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Habiteo: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/habiteo/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
